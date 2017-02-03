@@ -34,6 +34,7 @@ _A webpage that allows a user to input their information as a contact, as well a
 ## Memory Game Specifications
 
 |Example Input|Output|
+|-------------|------|
 |Select number of students to play with|"4"|
 |Select "Play!"|Displays twice as many empty boxes as students selected|
 |Click on box|Reveals box content (either student image or student name)|
