@@ -267,3 +267,7 @@ a:hover {
   margin-top: 20px;
   padding: 30px;
 }
+
+.player-one-display, .player-two-display {
+  display: none;
+}

@@ -20,19 +20,21 @@ Player.prototype.turnCompare = function() {
     for (var i = 0; i < 2; i ++) {
       $("." + twoClicks[i]).off();
     }
-    alert(this.points);
   } else {
     for (var i = 0; i < 2; i ++) {
+
       $("." + twoClicks[i]).children("img, p").css("display", "none");
-      // return currentGame.turn ++;
     }
   }
+}
+
+Game.prototype.turnChange = function() {
+  // return currentGame.turn ++;
 }
 
 Player.prototype.turn = function(turnClicks) {
   if (twoClicks.length === 2) {
     this.click ++;
-    alert(twoClicks);
     this.turnCompare(twoClicks);
     return twoClicks = [];
   } else {
@@ -93,8 +95,18 @@ $(document).ready(function() {
     $("div#game-board").empty();
     var userInput = $(".student-number").val();
     var currentGame = new Game(userInput);
+    var playerNumber = $("#player-numbers").val();
+    if (playerNumber === "two-player") {
+      $(".player-one-display").show();
+      $(".player-two-display").show();
+    } else {
+      $(".player-one-display").show();
+    }
+
     var playerOne = new Player(0);
     var playerTwo = new Player(0);
+    $("#player-one-score").text(playerOne.points);
+    $("#player-two-score").text(playerTwo.points);
     // var comparFlip1 = "", comparFlip2 = "";
     currentGame.clearCards();
 
