@@ -23,8 +23,8 @@ Player.prototype.turnCompare = function() {
     alert(this.points);
   } else {
     for (var i = 0; i < 2; i ++) {
-      $("." + twoClicks[i]).addClass("hidden");
-      return currentGame.turn ++;
+      $("." + twoClicks[i]).children("img, p").css("display", "none");
+      // return currentGame.turn ++;
     }
   }
 }
