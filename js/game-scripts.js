@@ -18,16 +18,14 @@ Player.prototype.turnCompare = function() {
   if (twoClicks[0] === twoClicks[1]) {
     this.points ++;
     for (var i = 0; i < 2; i ++) {
-      alert(twoClicks[i]);
-      $("twoClicks[i]").show();
+      $("." + twoClicks[i]).off();
     }
     alert(this.points);
   } else {
     for (var i = 0; i < 2; i ++) {
-      $("twoClicks[i]").hide();
+      $("." + twoClicks[i]).addClass("hidden");
+      return currentGame.turn ++;
     }
-    currentGame.turn ++;
-      alert(currentGame.turn);
   }
 }
 
@@ -121,7 +119,6 @@ $(document).ready(function() {
       $("#game-board").append("<div>" + itemToDisplay + "</div>");
       $("div#game-board").children("div").last().addClass(classNumber);
 
-
       if (currentGame.turn % 2 === 0) {
         $("div#game-board div").last().click(function() {
           $(this).children("img, p").show();
@@ -155,6 +152,11 @@ $(document).ready(function() {
     //
     // }
 
+    // function endGame(gameTile) {
+    //   $("div#game-board div").each(function() {
+    //     var shownTile = $(this).children("img, p").isVisible();
+    //     if ()
+    // }
 
 
   }); // end of submit
