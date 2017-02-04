@@ -43,7 +43,9 @@
 
       <div class="panel">
         <div class="panel-body" id="memory-game">
-          <p>Here is a game. Choose how many students will be in your game.</p>
+          <p>Test your memory! See whose names and faces you can match together.</p>
+          <p>This is a two player game where a player will turn over two tiles at the time to try and match a student name with their face. Successful matches will award the player a point, otherwise it will switch to the next player's turn. Once all tiles are matched, the player with the highest number of points wins!</p>
+          <p>To start, select the number of students you would like to have on the board to play with:</p>
           <form id="new-game">
             <select class="student-number">
             </select>
@@ -51,8 +53,11 @@
             <button type="submit" class="btn" id="start-game">Play!</button>
           </form>
 
+          <div id="score-board">
+            <h3>Player 1 Score:<span class="player-one-score"></span></h3>
+            <h3>Player 2 Score:<span class="player-two-score"></span></h3>
+          </div>
           <div id="game-board">
-
           </div>
         </div>
       </div>
