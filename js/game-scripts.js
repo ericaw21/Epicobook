@@ -12,24 +12,24 @@ function Player(points) {
 }
 
 var twoClicks = [];
-var turnChange = 0;
+var turnAddOne = 0;
 
 Player.prototype.turnCompare = function() {
   if (twoClicks[0] === twoClicks[1]) {
     this.points ++;
-    turnChange = 0;
+    turnAddOne = 0;
     for (var i = 0; i < 2; i ++) {
       $("." + twoClicks[i]).off();
     }
   } else {
-    turnChange = 1;
+    turnAddOne = 1;
     for (var i = 0; i < 2; i ++) {
       $("." + twoClicks[i]).children("img, p").addClass("hidden");
     }
   }
 }
 
-Player.prototype.turn = function(turnClicks) {
+Player.prototype.turn = function() {
   if (twoClicks.length === 2) {
     this.click ++;
     this.turnCompare(twoClicks);
@@ -48,8 +48,8 @@ Game.prototype.addCard = function(accountItems) {
 }
 
 Game.prototype.turnChange = function() {
-  if (turnChange === 1) {
-    this.turn += turnChange;
+  if (turnAddOne === 1) {
+    this.turn += turnAddOne;
   }
 }
 
@@ -102,7 +102,6 @@ $(document).ready(function() {
     if (playerNumber === "two-player") {
       $(".player-one-display").show();
       $(".player-two-display").show();
-      currentGame.turnChange();
     } else {
       $(".player-one-display").show();
     }
@@ -111,7 +110,6 @@ $(document).ready(function() {
     var playerTwo = new Player(0);
     $("#player-one-score").text(playerOne.points);
     $("#player-two-score").text(playerTwo.points);
-    // var comparFlip1 = "", comparFlip2 = "";
     currentGame.clearCards();
 
     for (var index = 1; index <= userInput; index ++) {
@@ -135,7 +133,7 @@ $(document).ready(function() {
       $("#game-board").append("<div>" + itemToDisplay + "</div>");
       $("div#game-board").children("div").last().addClass(classNumber);
 
-      if (currentGame.turn % 2 === 0) {
+      if (currentGame.turn % 2 === 0 && playerNumber === "two-player") {
         $("div#game-board div").last().click(function() {
           $(this).children("img, p").show();
           twoClicks.push($(this).last().attr("class"));
@@ -152,11 +150,6 @@ $(document).ready(function() {
           playerOne.turn();
           $("#player-one-score").text(playerOne.points);
           $("#player-two-score").text(playerTwo.points);
-          // if () {
-          //
-          // } else {
-          //
-          // }
         });
       }
 
