@@ -12,24 +12,21 @@ function Player(points) {
 }
 
 var twoClicks = [];
+var turnChange = 0;
 
 Player.prototype.turnCompare = function() {
-  var currentGame;
   if (twoClicks[0] === twoClicks[1]) {
     this.points ++;
+    turnChange = 0;
     for (var i = 0; i < 2; i ++) {
       $("." + twoClicks[i]).off();
     }
   } else {
+    turnChange = 1;
     for (var i = 0; i < 2; i ++) {
-
-      $("." + twoClicks[i]).children("img, p").css("display", "none");
+      $("." + twoClicks[i]).children("img, p").addClass("hidden");
     }
   }
-}
-
-Game.prototype.turnChange = function() {
-  // return currentGame.turn ++;
 }
 
 Player.prototype.turn = function(turnClicks) {
@@ -48,6 +45,12 @@ Game.prototype.clearCards = function() {
 
 Game.prototype.addCard = function(accountItems) {
   this.studentCards.push(accountItems);
+}
+
+Game.prototype.turnChange = function() {
+  if (turnChange === 1) {
+    this.turn += turnChange;
+  }
 }
 
 // Game.prototype.endGame = function() {
@@ -99,6 +102,7 @@ $(document).ready(function() {
     if (playerNumber === "two-player") {
       $(".player-one-display").show();
       $(".player-two-display").show();
+      currentGame.turnChange();
     } else {
       $(".player-one-display").show();
     }
@@ -142,7 +146,7 @@ $(document).ready(function() {
         });
       } else {
         $("div#game-board div").last().click(function() {
-          $(this).children("img, p").show();
+          $(this).children("img, p").removeClass("hidden");
           twoClicks.push($(this).last().attr("class"));
           currentGame.flip ++;
           playerOne.turn();
@@ -157,12 +161,6 @@ $(document).ready(function() {
       }
 
     }); // end of forEach function
-
-    // if (currentGame.flip % 2 === 0) {
-    //
-    // } else {
-    //
-    // }
 
     // function endGame(gameTile) {
     //   $("div#game-board div").each(function() {
