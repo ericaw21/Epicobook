@@ -17,12 +17,15 @@ Player.prototype.turnCompare = function() {
   var currentGame;
   if (twoClicks[0] === twoClicks[1]) {
     this.points ++;
-    $(twoClicks[0]).attr("class").hide();
-    $(twoClicks[1]).attr("class").hide();
+    for (var i = 0; i < 2; i ++) {
+      alert(twoClicks[i]);
+      $("twoClicks[i]").show();
+    }
     alert(this.points);
   } else {
-    $(twoClicks[0]).attr("class").hide();
-    $(twoClicks[1]).attr("class").hide();
+    for (var i = 0; i < 2; i ++) {
+      $("twoClicks[i]").hide();
+    }
     currentGame.turn ++;
       alert(currentGame.turn);
   }
@@ -32,7 +35,6 @@ Player.prototype.turn = function(turnClicks) {
   if (twoClicks.length === 2) {
     this.click ++;
     alert(twoClicks);
-    alert(this.click);
     this.turnCompare(twoClicks);
     return twoClicks = [];
   } else {
@@ -126,6 +128,8 @@ $(document).ready(function() {
           twoClicks.push($(this).last().attr("class"));
           currentGame.flip ++;
           playerTwo.turn();
+          $("#player-one-score").text(playerOne.points);
+          $("#player-two-score").text(playerTwo.points);
         });
       } else {
         $("div#game-board div").last().click(function() {
@@ -133,6 +137,8 @@ $(document).ready(function() {
           twoClicks.push($(this).last().attr("class"));
           currentGame.flip ++;
           playerOne.turn();
+          $("#player-one-score").text(playerOne.points);
+          $("#player-two-score").text(playerTwo.points);
           // if () {
           //
           // } else {
